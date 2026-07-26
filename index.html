@@ -560,13 +560,14 @@
 <script>
 const defaults = {
   assumptions:{
-    targetMargin:0.50,
+    targetMargin:0.35,
     riyaBaseCost:0.10,
     riyaBaseMinutes:10,
     riyaUnitCost:0.01,
     defaultInterviewDuration:20,
     addonRounding:0.01,
-    planRounding:1
+    planRounding:1,
+    fxRate:270
   },
   riyaDurations:[
     {minutes:10,priceOverride:null},
@@ -581,15 +582,15 @@ const defaults = {
     {name:"Job Posting / AI JD",cost:0.3065,unit:"per JD",limits:[5,12,45,115]},
     {name:"Resume AWS Storage",cost:0.000027,unit:"per resume",limits:[1500,500,15000,25000]},
     {name:"Soft Scoring",cost:0.0013,unit:"per score",limits:[100,100,230,600]},
-    {name:"AI Analysis",cost:0.10485,unit:"per analysis",limits:[100,100,230,600]},
+    {name:"AI Analysis",cost:0.10485,unit:"per analysis",limits:[100,115,230,600]},
     {name:"Skill Veracity",cost:0.2964,unit:"full assessment",limits:[10,20,80,275]},
     {name:"DeepDive",cost:0.124,unit:"GitHub + LinkedIn",limits:[0,20,80,275]},
     {name:"Cloud Storage",cost:0,unit:"GB included",limits:[2,5,10,50]},
-    {name:"Seats",cost:null,unit:"Plan feature",limits:[1,1,3,8]},
+    {name:"Seats",cost:null,unit:"Plan feature",limits:[1,1,3,10]},
     {name:"Email Inbox",cost:0.001,unit:"per email",limits:[200,500,2000,5000]},
     {name:"Riya Co-pilot",cost:0.002,unit:"per prompt/action",limits:[0,50,600,1000]},
     {name:"Riya Video Interview",cost:"riya",unit:"per interview",limits:[0,0,8,20]},
-    {name:"Reports",cost:0.001,unit:"per report",limits:[20,50,100,500]},
+    {name:"Reports",cost:0.001,unit:"per report",limits:[200,50,100,500]},
     {name:"File Exports",cost:null,unit:"Plan feature",limits:["CSV","CSV","CSV + Excel","CSV + Excel + PDF"]},
     {name:"MFA",cost:null,unit:"Plan feature",limits:["Yes","Yes","Yes","Yes"]},
     {name:"Support",cost:null,unit:"Plan feature",limits:["Basic","Email","Priority Email","Priority Support"]}
@@ -616,14 +617,14 @@ const defaults = {
     {name:"Extra Storage",category:"Storage",unitCost:0,quantity:5,minutes:0,unit:"GB"}
   ],
   breakEven:{
-    monthlyExpenditure:12000,
+    monthlyExpenditure:11000,
     safetyBuffer:0.10,
-    coverageBasis:"Contribution",
-    enterprisePrice:2000,
+    coverageBasis:"Revenue",
+    enterprisePrice:1000,
     enterpriseCost:0,
     curveBandwidth:0.55,
     mix:[0.40,0.35,0.20,0.05],
-    manual:[0,0,0,0],
+    manual:[10,10,10,3],
     scenarios:[
       {name:"SMB Heavy",mix:[0.60,0.25,0.12,0.03]},
       {name:"Balanced",mix:[0.40,0.35,0.20,0.05]},
